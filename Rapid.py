@@ -39,11 +39,11 @@ def scan_ports(target_host, ports_to_scan):
     return open_ports
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} <target_host>")
-        sys.exit(1)
+    # Prompt the user to enter the target IP address
+    target_host = input("Enter the target IP address: ")
 
-    target_host = sys.argv[1]
+    # Define the range of ports to scan
     ports_to_scan = list(range(1, 1001))
 
+    # Call the scan_ports function with user-defined target IP address
     open_ports = scan_ports(target_host, ports_to_scan)
