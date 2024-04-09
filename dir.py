@@ -7,8 +7,7 @@ async def fetch(session, url, semaphore):
     async with semaphore:
         async with session.get(url) as response:
             if response.status == 200:
-                print(f"\r[+] Found directory: {url}", end="")
-                sys.stdout.flush()
+                print(f"[+] Found directory: {url}")
 
 async def enumerate_directories(url, wordlist):
     try:
@@ -29,6 +28,7 @@ async def enumerate_directories(url, wordlist):
                     print(f"\rProgress: {count}/{total_lines} ({progress:.2f}%) {'-' * int(progress / 2)}", end="")
                     sys.stdout.flush()
             await asyncio.gather(*tasks)
+            print()  # Add newline after all URLs are found
     except FileNotFoundError:
         print("Wordlist file not found!")
 
