@@ -26,12 +26,12 @@ async def display_progress(total, results, lock):
             break
         await asyncio.sleep(0.1)  # Adjust the sleep time as needed
 
-async def enumerate_directories(url, wordlist):
+async def enumerate_directories(url, wordlist_path):
     # Create a lock for synchronization
     lock = asyncio.Lock()
 
     # Read wordlist into a queue
-    with open(wordlist, 'r') as f:
+    with open(wordlist_path, 'r') as f:
         wordlist_queue = asyncio.Queue()
         for line in f:
             await wordlist_queue.put(line.strip())
